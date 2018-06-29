@@ -1,20 +1,23 @@
+const PENDING = 'pending';
+const FULFILLED = 'fulfilled';
+const REJECTED = 'rejected';
 class Promise {
   constructor(executor) {
-    this.state = 'pending';
+    this.state = PENDING;
     this.value = undefined;
     this.reason = undefined;
     this.onResolvedCallbacks = [];
     this.onRejectedCallbacks = [];
     let resolve = (value) => {
-      if (this.state === 'pending') {
-        this.state = 'fulfilled';
+      if (this.state === PENDING) {
+        this.state = FULFILLED;
         this.value = value;
         this.onResolvedCallbacks.forEach(fn => fn());
       }
     };
     let reject = (reason) => {
-      if (this.state === 'pending') {
-        this.state = 'rejected';
+      if (this.state === PENDING) {
+        this.state = REJECTED;
         this.reason = reason;
         this.onRejectedCallbacks.forEach(fn => fn());
       }
@@ -32,7 +35,7 @@ class Promise {
       throw err
     };
     let promise2 = new Promise((resolve, reject) => {
-      if (this.state === 'fulfilled') {
+      if (this.state === FULFILLED) {
         setTimeout(() => {
           try {
             let x = onFulfilled(this.value);
@@ -42,7 +45,7 @@ class Promise {
           }
         }, 0);
       }
-      if (this.state === 'rejected') {
+      if (this.state === REJECTED) {
         setTimeout(() => {
           try {
             let x = onRejected(this.reason);
@@ -52,7 +55,7 @@ class Promise {
           }
         }, 0);
       }
-      if (this.state === 'pending') {
+      if (this.state === PENDING) {
         this.onResolvedCallbacks.push(() => {
           setTimeout(() => {
             try {

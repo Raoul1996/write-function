@@ -1,0 +1,23 @@
+{
+  "name": "promise",
+  "version": "1.0.0",
+  "description": "使用 JS 去手写一些什么东西",
+  "main": "promise.js",
+  "scripts": {
+    "test": "promises-aplus-tests $1",
+    "test:promise": "npm run test promise.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raoul1996/write-function.git"
+  },
+  "author": "Raoul1996<baobaozhou199606@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raoul1996/write-function/issues"
+  },
+  "homepage": "https://github.com/Raoul1996/write-function#readme",
+  "dependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}
